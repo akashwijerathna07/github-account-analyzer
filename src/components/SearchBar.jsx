@@ -1,32 +1,39 @@
 import { useState } from "react";
 
-function SearchBar(){
+function SearchBar({ onSearch }){
 
     const [userInput, setUserInput] = useState("")
     const [error, setError] = useState(null)
 
-    function handleSearch(){
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
         if(userInput.trim() === ""){
             setError("Please enter a username");
             return;
         }
 
         setError(null);
-        console.log(userInput);
+        onSearch(userInput);
     }
 
     return(
         <div className="search-wrapper">
             <div className="search-container">
-                <input 
-                    type="text" 
-                    placeholder="E.g. @torvalds"
-                    value={userInput}
-                    onChange={(e) => setUserInput(e.target.value)}
-                        
-                />
+                <form onSubmit={handleSubmit}>
+                    <input 
+                        type="text" 
+                        placeholder="E.g. @torvalds"
+                        value={userInput}
+                        onChange={(e) => setUserInput(e.target.value)}       
+                    />
 
-                <button onClick={handleSearch}>Find</button>
+                    <button 
+                        type="submit">
+                            Find
+                    </button>
+                </form>
 
                 
             </div>
