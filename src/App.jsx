@@ -11,6 +11,8 @@ function App() {
   const [error, setError] = useState(null);
   const [emptyFieldError, setEmptyFieldError] = useState(null);
 
+  const TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
+
   async function handleSearch(username){
 
     setEmptyFieldError(null);
@@ -27,7 +29,13 @@ function App() {
       setError(null);
       setUser(null);
 
-      const response = await fetch(`https://api.github.com/users/${username}`);
+      const response = await fetch(
+          `https://api.github.com/users/${username}`,
+          {
+            headers:{
+              Authorization: `Bearer ${TOKEN}`
+            }
+          });
       
       if(!response.ok){
         throw new Error("User not found");
