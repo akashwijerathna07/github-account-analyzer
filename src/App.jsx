@@ -2,18 +2,30 @@ import { useState } from 'react';
 
 import './App.css';
 import SearchBar from './components/SearchBar';
+import UserProfile from './components/UserProfile';
 
 function App() {
 
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [emptyFieldError, setEmptyFieldError] = useState(null);
 
   async function handleSearch(username){
+
+    setEmptyFieldError(null);
+
+    if(username.trim() === ""){
+      setEmptyFieldError("Please enter a username");
+      setUser(null);
+      setError(null);
+      return;
+    }
 
     try{
       setLoading(true);
       setError(null);
+      setUser(null);
 
       const response = await fetch(`https://api.github.com/users/${username}`);
       
@@ -42,7 +54,17 @@ function App() {
         <p>Analyze GitHub profiles, repositories, and coding activity with powerful insights.</p>
       </div>
 
-      <SearchBar onSearch={handleSearch}/>
+      <div className="search-wrapper">
+        <SearchBar 
+          onSearch={handleSearch} />
+
+        {emptyFieldError && <p className='empty-field-error-message'>{emptyFieldError}</p>}
+      </div>
+      
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
+      {user && <UserProfile user={user}/>}
+
     </div>
   )
 }

@@ -3,28 +3,29 @@ import { useState } from "react";
 function SearchBar({ onSearch }){
 
     const [userInput, setUserInput] = useState("")
-    const [error, setError] = useState(null)
+    // const [error, setError] = useState(null)
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        // setError(null);
 
-        if(userInput.trim() === ""){
-            setError("Please enter a username");
-            return;
-        }
+        // if(userInput.trim() === ""){
+        //     setError("Please enter a username");
+        //     clearUser();
+        //     return;
+        // }
 
-        setError(null);
         onSearch(userInput);
     }
 
     return(
-        <div className="search-wrapper">
+        
             <div className="search-container">
                 <form onSubmit={handleSubmit}>
                     <input 
                         type="text" 
-                        placeholder="E.g. @torvalds"
+                        placeholder="E.g. torvalds"
                         value={userInput}
                         onChange={(e) => setUserInput(e.target.value)}       
                     />
@@ -37,13 +38,7 @@ function SearchBar({ onSearch }){
 
                 
             </div>
-
-            {error && (
-                <p className="error-message">
-                    {error}
-                </p>
-            )}
-        </div>
+        
     )
 }
 

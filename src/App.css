@@ -76,7 +76,7 @@
 .search-container button:hover {
     background-color: var(--primary-hover);
 }
-.error-message {
+.empty-field-error-message {
     margin-top: 12px;
     color: #ff6b6b;
     font-size: 0.95rem;
