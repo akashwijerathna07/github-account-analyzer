@@ -10,6 +10,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [emptyFieldError, setEmptyFieldError] = useState(null);
+  const [repos, setRepos] = useState([]);
 
   const TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
 
@@ -20,6 +21,7 @@ function App() {
     if(username.trim() === ""){
       setEmptyFieldError("Please enter a username");
       setUser(null);
+      setRepos([]);
       setError(null);
       return;
     }
@@ -35,7 +37,8 @@ function App() {
             headers:{
               Authorization: `Bearer ${TOKEN}`
             }
-          });
+          }
+      );
       
       if(!response.ok){
         throw new Error("User not found");
@@ -44,10 +47,28 @@ function App() {
       const data = await response.json();
       setUser(data);
 
+      const repoResponse = await fetch(
+        `https://api.github.com/users/${username}/repos?per_page=100`,
+        {
+          header:{
+            Authorization: `Bearer ${TOKEN}`
+          }
+        }
+      );
+
+      if(!repoResponse.ok){
+        throw new Error("Unable to fetch repositories");
+      }
+
+      const repoData = await repoResponse.json();
+      setRepos(repoData);
+      console.log(repoData);
+
     }
     catch(e) {
       setError(e.message);
       setUser(null);
+      setRepos([]);
     } 
     finally {
       setLoading(false);
@@ -71,7 +92,7 @@ function App() {
       
       {loading && <div className='spinner'></div>}
       {error && <p>{error}</p>}
-      {user && <UserProfile user={user}/>}
+      {user && <UserProfile user={user} repos={repos}/>}
 
     </div>
   )

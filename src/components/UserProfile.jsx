@@ -1,6 +1,6 @@
 import formatNumber from "../utils/formatNumber";
 
-function UserProfile({ user }){
+function UserProfile({ user, repos }){
 
     const joinedDate = new Date(user.created_at);
 
@@ -48,6 +48,12 @@ function UserProfile({ user }){
                         </p>
                     </div>
                 </div>
+
+                <div className="repo-data">
+                    ok
+                </div>
+
+
             </div>
         </div>
         
