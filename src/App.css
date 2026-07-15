@@ -184,3 +184,72 @@
     margin-top: 5px;
     font-weight: 300;
 }
+.profile-section{
+    padding-bottom: 20px;
+    border-bottom: 1px solid #404046;
+    margin-bottom: 20px;
+}
+.repo-heading{
+    margin: 0;
+    margin-bottom: 25px;
+}
+.repo-first-section{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.repo-stat{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.repo-stat p{
+    margin: 0;
+    font-weight: 300;
+}
+.repo-stat .repo-value{
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+.top-repository{
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    margin: 20px;
+    border-top: 1px solid #404046;
+    padding-top: 20px;
+}
+.repo-section-title{
+    margin: 0;
+    margin-right: 25px;
+}
+.repository-name{
+    margin: 0;
+    font-weight: 300;
+}
+.most-used-language{
+    display: flex;
+    align-items: center;
+}
+.lang-section-title{
+    margin: 0;
+    margin-right: 25px;
+}
+.language-name{
+    margin: 0;
+    font-weight: 300;
+}
+.recent-repository{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+.recent-repo-name{
+    margin: 0;
+    margin-right: 25px;
+}
+.repository-name-date{
+    margin: 0;
+    font-weight: 300;
+}
