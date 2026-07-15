@@ -69,7 +69,7 @@ function App() {
         {emptyFieldError && <p className='empty-field-error-message'>{emptyFieldError}</p>}
       </div>
       
-      {loading && <p>Loading...</p>}
+      {loading && <div className='spinner'></div>}
       {error && <p>{error}</p>}
       {user && <UserProfile user={user}/>}
 
