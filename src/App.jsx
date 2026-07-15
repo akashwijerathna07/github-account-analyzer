@@ -62,7 +62,6 @@ function App() {
 
       const repoData = await repoResponse.json();
       setRepos(repoData);
-      console.log(repoData);
 
     }
     catch(e) {
